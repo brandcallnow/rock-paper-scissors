@@ -21,47 +21,43 @@ rock.addEventListener("click", function() {
     playRound('r', computerSelection())
 });//If the Rock is clicked it chooses that as the player selection
 
-const pscore = document.querySelector(".playerscore");
-const cscore = document.querySelector(".computerscore");
-const draw = document.querySelector(".draw");
+const pscore = document.getElementById("playerScore")
 var plscore = 0;
 var cocore = 0;
 var draws = 0;
-pscore.innerHTML = plscore;
-cscore.innerHTML = cocore;
-draw.innerHTML = draws;
+function win(p) {
+    pscore.innerHTML = p;
+}
+const cscore = document.getElementById("computerScore")
+function lose(c) {
+    cscore.innerHTML = c;
+}
 
+const result = document.getElementById("test");
+function displayResults(str) {
+    result.innerHTML = str;
+}
 
-
-
-
-
-
-
-
-function playRound(P, CPU) { // The game function unnecessarily long though
+function playRound(P, CPU) { 
     
     switch (P + CPU) {
         case 'rs':
         case 'sp':
         case 'pr':
-        alert("You Win!");
-        plscore++;
+        displayResults("You Won");
+        win(++plscore);
         break;
         case 'sr':
         case 'ps':
         case 'rp':
-        alert("You Lose!");
-        cocore++;
+        displayResults("You Lost");
+        lose(++cocore);
         break;
         case 'rr':
         case 'pp':
         case 'ss':
-        alert("DRAW");
-        draws++;
-        break;
-
-
+        displayResults("It's a draw");
+        
     }
 
     
